@@ -4,6 +4,11 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>d5c7d6c9-2e0d-4b6a-ab9a-94f6e0797149</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="10.0.3" />
+  </ItemGroup>
 
 </Project>
