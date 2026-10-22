@@ -1,0 +1,29 @@
+﻿@model Note
+@{
+    ViewData["Title"] = "Edit note";
+}
+
+<h1 class="mb-3">Edit note</h1>
+
+<form asp-action="Edit" method="post" class="card card-body" style="max-width:36rem">
+    <!-- Hidden input to keep track of the Note ID during submission -->
+    <input type="hidden" asp-for="NoteId" />
+
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Body" class="form-label"></label>
+        <!-- Replaced dropdown option menu with a text area block for writing notes -->
+        <textarea asp-for="Body" class="form-control" rows="6"></textarea>
+        <span asp-validation-for="Body" class="text-danger"></span>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-action="Index" class="btn btn-link">Cancel</a>
+    </div>
+</form>

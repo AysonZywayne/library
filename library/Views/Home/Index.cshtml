@@ -3,102 +3,214 @@
 }
 
 <style>
-    /* Added a light blue background to the body/page scope */
+    /* Premium modern color variables and background pattern */
     body {
-        background-color: #f0f4f8;
+        background-color: #0f172a;
+        background-image: radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.3) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(88, 28, 135, 0.2) 0px, transparent 50%);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        color: #f8fafc;
+        min-height: 100vh;
     }
 
-    .cool-hero {
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        color: white;
-        border-radius: 1rem;
-        box-shadow: 0 10px 30px rgba(42, 82, 152, 0.2);
+    /* Glassmorphism Animated Hero Container */
+    .premium-hero {
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.8) 100%);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 1.5rem;
+        position: relative;
+        overflow: hidden;
     }
 
-    .hover-card {
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        border: none;
-        border-radius: 1rem;
-    }
-
-        .hover-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+        .premium-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 60%);
+            pointer-events: none;
         }
 
-    .cool-btn-blue {
-        background: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%);
-        color: white;
-        border: none;
-        border-radius: 2rem;
-        font-weight: 600;
-        transition: opacity 0.2s;
+    /* Modern Card Layouts with Border Glow Hooks */
+    .premium-card {
+        background: rgba(30, 41, 59, 0.4);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 1.5rem;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .cool-btn-green {
-        background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
-        color: white;
-        border: none;
-        border-radius: 2rem;
-        font-weight: 600;
-        transition: opacity 0.2s;
-    }
-
-        .cool-btn-blue:hover, .cool-btn-green:hover {
-            opacity: 0.9;
-            color: white;
+        .premium-card:hover {
+            transform: translateY(-6px);
+            background: rgba(30, 41, 59, 0.6);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
+
+    /* Unique Card Theme Border Enhancements */
+    .card-books:hover {
+        border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .card-members:hover {
+        border-color: rgba(52, 211, 153, 0.4);
+    }
+
+    .card-notes:hover {
+        border-color: rgba(192, 132, 252, 0.4);
+    }
+
+    /* Custom Fluid Action Buttons */
+    .action-btn {
+        border: none;
+        border-radius: 1rem;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+        .action-btn .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .action-btn:hover .arrow {
+            transform: translateX(4px);
+        }
+
+    .btn-glow-blue {
+        background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+        color: #fff;
+        box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+    }
+
+        .btn-glow-blue:hover {
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
+            opacity: 0.95;
+        }
+
+    .btn-glow-green {
+        background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+        color: #fff;
+        box-shadow: 0 4px 14px rgba(52, 211, 153, 0.3);
+    }
+
+        .btn-glow-green:hover {
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(52, 211, 153, 0.5);
+            opacity: 0.95;
+        }
+
+    .btn-glow-purple {
+        background: linear-gradient(135deg, #c084fc 0%, #7c3aed 100%);
+        color: #fff;
+        box-shadow: 0 4px 14px rgba(192, 132, 252, 0.3);
+    }
+
+        .btn-glow-purple:hover {
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(192, 132, 252, 0.5);
+            opacity: 0.95;
+        }
+
+    /* Circular Background Pill Badges */
+    .icon-wrapper {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
 </style>
 
 <div class="container py-5">
-    <!-- Modern Vibrant Hero Unit -->
-    <div class="p-5 mb-5 cool-hero text-center text-md-start">
-        <div class="row align-items-center">
-            <div class="col-md-8">
-                <h1 class="display-4 fw-black mb-3 text-white">Library</h1>
-                <p class="fs-5 opacity-75 mb-0">
-                    Welcome!! Instantly deploy new catalog adjustments, sync live members.
+    <!-- Premium Glassmorphism Hero Unit -->
+    <div class="p-5 mb-5 premium-hero">
+        <div class="row align-items-center position-relative" style="z-index: 2;">
+            <div class="col-md-8 text-center text-md-start">
+                <h1 class="display-4 fw-bold mb-3 text-white tracking-tight" style="letter-spacing: -1px;">Library Dashboard</h1>
+                <p class="fs-5 text-secondary mb-0" style="color: #94a3b8 !important;">
+                    Welcome back! Instantly deploy new catalog adjustments, sync live members, and track custom documentation items seamlessly.
                 </p>
             </div>
-            <div class="col-md-4 text-center d-none d-md-block text-white opacity-25">
-                <span style="font-size: 6rem;">⚡</span>
+            <div class="col-md-4 text-center d-none d-md-block opacity-50">
+                <!-- Sleek CSS Animated Orb -->
+                <div class="spinner-grow text-info" role="status" style="width: 4rem; height: 4rem; animation-duration: 3s;">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Interactive Grid Systems -->
+    <!-- Interface Workspace Grid Rows -->
     <div class="row g-4 justify-content-center">
         <!-- Interactive Books Management Card -->
-        <div class="col-md-5">
-            <div class="card h-100 shadow-sm hover-card bg-white border-start border-primary border-5">
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 premium-card card-books">
                 <div class="card-body d-flex flex-column p-4">
-                    <div class="d-flex align-items-center mb-3">
-                        <span class="fs-2 me-3">📖</span>
-                        <h3 class="card-title m-0 fw-bold text-dark">Book Collection</h3>
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="icon-wrapper bg-info bg-opacity-10 text-info border border-info border-opacity-25">
+                            📖
+                        </div>
+                        <h4 class="card-title m-0 fw-bold text-white ms-3">Book Collection</h4>
                     </div>
-                    <p class="card-text text-muted flex-grow-1">
-                        Run deep audits on book inventories, categorize genres, and balance listing value metrics.
+                    <p class="card-text flex-grow-1" style="color: #94a3b8; line-height: 1.6;">
+                        Run deep audits on book inventories, categorize genres, and balance listing value metrics across databases.
                     </p>
-                    <a asp-controller="Books" asp-action="Index" class="btn cool-btn-blue py-2 mt-4 shadow-sm">
-                        Open Books Library &rarr;
+                    <a asp-controller="Books" asp-action="Index" class="btn action-btn btn-glow-blue py-2.5 mt-4">
+                        <span>Open Library</span>
+                        <span class="arrow">&rarr;</span>
                     </a>
                 </div>
             </div>
         </div>
 
         <!-- Interactive Members Management Card -->
-        <div class="col-md-5">
-            <div class="card h-100 shadow-sm hover-card bg-white border-start border-success border-5">
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 premium-card card-members">
                 <div class="card-body d-flex flex-column p-4">
-                    <div class="d-flex align-items-center mb-3">
-                        <span class="fs-2 me-3">⚡</span>
-                        <h3 class="card-title m-0 fw-bold text-dark">Members</h3>
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="icon-wrapper bg-success bg-opacity-10 text-success border border-success border-opacity-25">
+                            👥
+                        </div>
+                        <h4 class="card-title m-0 fw-bold text-white ms-3">Members Directory</h4>
                     </div>
-                    <p class="card-text text-muted flex-grow-1">
-                        Provision new accounts and secure credentials. Real time auditing of profile classes, classification logs, active rental permissions, and verification status fields.
+                    <p class="card-text flex-grow-1" style="color: #94a3b8; line-height: 1.6;">
+                        Provision user accounts, log verified classification fields, and manage rolling active rental configuration keys.
                     </p>
-                    <a asp-controller="Member" asp-action="Index" class="btn cool-btn-green py-2 mt-4 shadow-sm">
-                        Open Members &rarr;
+                    <a asp-controller="Member" asp-action="Index" class="btn action-btn btn-glow-green py-2.5 mt-4">
+                        <span>Open Members</span>
+                        <span class="arrow">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Notes Management Card -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 premium-card card-notes">
+                <div class="card-body d-flex flex-column p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="icon-wrapper bg-purple bg-opacity-10 text-purple border border-purple border-opacity-25" style="background-color: rgba(168,85,247,0.1) !important; color: #c084fc !important; border-color: rgba(168,85,247,0.2) !important;">
+                            📝
+                        </div>
+                        <h4 class="card-title m-0 fw-bold text-white ms-3">System Notes</h4>
+                    </div>
+                    <p class="card-text flex-grow-1" style="color: #94a3b8; line-height: 1.6;">
+                        Organize internal administration content summary indices. Review historical creation logs, reminders, and context tags.
+                    </p>
+                    <a asp-controller="Note" asp-action="Index" class="btn action-btn btn-glow-purple py-2.5 mt-4">
+                        <span>Open System Notes</span>
+                        <span class="arrow">&rarr;</span>
                     </a>
                 </div>
             </div>
