@@ -83,4 +83,13 @@ connection, transaction))
         await transaction.CommitAsync();
         return true;
     }
+
+    // RETURN: mark a loan as returned today. A loan already returned is left alone.
+    public async Task ReturnAsync(long loanId)
+    {
+        const string sql = "UPDATE lending.loan SET returned_on = CURRENT_DATE " + "WHERE loan_id = @id AND returned_on IS NULL;";
+        await using var command = _dataSource.CreateCommand(sql);
+        command.Parameters.AddWithValue("id", loanId);
+        await command.ExecuteNonQueryAsync();
+    }
 }
