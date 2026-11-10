@@ -83,14 +83,9 @@
                             <!-- Action Buttons -->
                             <td class="pe-4 text-end">
                                 <div class="d-inline-flex gap-2">
-                                    <a asp-action="Edit" asp-route-id="@member.MemberId"
-                                       class="btn btn-sm btn-outline-secondary rounded-pill px-3 fw-medium transition-all">
-                                        Edit
-                                    </a>
-                                    <a asp-action="Delete" asp-route-id="@member.MemberId"
-                                       class="btn btn-sm btn-outline-danger rounded-pill px-3 fw-medium transition-all">
-                                        Delete
-                                    </a>
+                                    <a asp-action="Details" asp-route-id="@member.MemberId" class="btn btn-sm btn-outline-primary">Loans</a>
+                                    <a asp-action="Edit" asp-route-id="@member.MemberId"class="btn btn-sm btn-outline-secondary rounded-pill px-3 fw-medium transition-all">Edit</a>
+                                    <a asp-action="Delete" asp-route-id="@member.MemberId"class="btn btn-sm btn-outline-danger rounded-pill px-3 fw-medium transition-all">Delete</a>
                                 </div>
                             </td>
                         </tr>
