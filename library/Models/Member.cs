@@ -11,4 +11,5 @@ public class Member
     [RegularExpression(@"^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$", ErrorMessage = "Enter an email such asana@ubaguio.edu.")]
     public string? Email { get; set; } // email VARCHAR(120), may be NULL, UNIQUE
     public string MemberType { get; set; } = ""; // member_type VARCHAR(10) NOT NULL
+    public long OpenLoans { get; set; } // filled only by the member list; never saved
 }
