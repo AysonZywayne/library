@@ -3,43 +3,208 @@
     ViewData["Title"] = "Add a book";
 }
 
-<div class="d-flex gap-2 mb-4">
-<a asp-action="Index" class="btn btn-sm btn-outline-secondary rounded-pill px-3 d-inline-flex align-items-center gap-1">
-    <span>&larr;</span> Back to List
-</a>
-<a asp-controller="Home" asp-action="Index" class="btn btn-sm btn-light border rounded-pill px-3 d-inline-flex align-items-center gap-1">
-    <span>🏠</span> Back to Home
-</a>
+<style>
+    /* Experiment 626 / Lilo & Stitch Color Palette */
+    .stitch-container {
+        max-width: 38rem;
+        margin: 2rem auto;
+        padding: 1.5rem;
+        background: radial-gradient(circle at top right, #e0f2fe 0%, #f0f9ff 60%, #fff1f2 100%);
+        border-radius: 28px;
+        border: 2px solid #bae6fd;
+        box-shadow: 0 18px 40px rgba(2, 132, 199, 0.12);
+        position: relative;
+        overflow: hidden;
+    }
+
+        /* Subtle Tropical Hibiscus / Island Glow */
+        .stitch-container::before {
+            content: "🌺";
+            position: absolute;
+            top: 14px;
+            right: 20px;
+            font-size: 1.75rem;
+            opacity: 0.85;
+            transform: rotate(12deg);
+            pointer-events: none;
+        }
+
+        .stitch-container::after {
+            content: "🌴";
+            position: absolute;
+            bottom: 12px;
+            right: 18px;
+            font-size: 1.5rem;
+            opacity: 0.45;
+            pointer-events: none;
+        }
+
+        /* Top Navigation Pills */
+        .stitch-container .btn-outline-secondary {
+            border-color: #38bdf8;
+            color: #0369a1;
+            background-color: #ffffff;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+            .stitch-container .btn-outline-secondary:hover {
+                background-color: #0284c7;
+                border-color: #0284c7;
+                color: #ffffff;
+                transform: translateY(-1px);
+            }
+
+        .stitch-container .btn-light {
+            background-color: #ffe4e6 !important;
+            border-color: #fda4af !important;
+            color: #be123c !important;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+            .stitch-container .btn-light:hover {
+                background-color: #fb7185 !important;
+                color: #ffffff !important;
+                transform: translateY(-1px);
+            }
+
+        /* Heading with Stitch Ear/Blue Gradient Accent */
+        .stitch-container h1 {
+            color: #1e3a8a;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+            .stitch-container h1::before {
+                content: "🐾";
+                font-size: 1.5rem;
+            }
+
+        /* Main Form Card */
+        .stitch-container .card {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(8px);
+            border: 2px solid #7dd3fc;
+            border-top: 6px solid #2563eb;
+            border-radius: 22px;
+            padding: 1.75rem;
+            box-shadow: 0 10px 25px rgba(30, 58, 138, 0.08);
+        }
+
+        /* Labels & Inputs */
+        .stitch-container .form-label {
+            color: #1e40af;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .stitch-container .form-control,
+        .stitch-container .form-select {
+            border: 2px solid #bae6fd;
+            border-radius: 14px;
+            padding: 0.65rem 1rem;
+            background-color: #f8fafc;
+            color: #0f172a;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+            .stitch-container .form-control:focus,
+            .stitch-container .form-select:focus {
+                background-color: #ffffff;
+                border-color: #2563eb;
+                box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.25);
+            }
+
+        /* Validation Text (Lilo's Red Dress Accent) */
+        .stitch-container .text-danger {
+            color: #e11d48 !important;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            display: block;
+        }
+
+        /* Stitch Cosmic Blue Gradient Save Button */
+        .stitch-container .btn-primary {
+            background: linear-gradient(90deg, #1d4ed8 0%, #0ea5e9 100%);
+            border: none;
+            border-radius: 50rem;
+            padding: 0.6rem 1.75rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            box-shadow: 0 6px 16px rgba(14, 165, 233, 0.35);
+            transition: all 0.2s ease;
+        }
+
+            .stitch-container .btn-primary:hover {
+                background: linear-gradient(90deg, #1e3a8a 0%, #0284c7 100%);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(29, 78, 216, 0.4);
+            }
+
+        /* Tropical Coral Cancel Link */
+        .stitch-container .btn-link {
+            color: #e11d48;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 0.6rem 1rem;
+            border-radius: 50rem;
+            transition: background-color 0.2s ease;
+        }
+
+            .stitch-container .btn-link:hover {
+                background-color: #ffe4e6;
+                color: #be123c;
+            }
+</style>
+
+<div class="stitch-container">
+    <div class="d-flex gap-2 mb-4">
+        <a asp-action="Index" class="btn btn-sm btn-outline-secondary rounded-pill px-3 d-inline-flex align-items-center gap-1">
+            <span>&larr;</span> Back to List
+        </a>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-sm btn-light border rounded-pill px-3 d-inline-flex align-items-center gap-1">
+            <span></span> Back to Home
+        </a>
+    </div>
+
+    <h1 class="mb-3">Add a book</h1>
+    <form asp-action="Create" method="post" class="card card-body" style="max-width:36rem">
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Category" class="form-label"></label>
+            <select asp-for="Category" class="form-select">
+                <option value="">(none)</option>
+                <option>Classic</option>
+                <option>Fiction</option>
+                <option>Poetry</option>
+                <option>Reference</option>
+                <option>Textbook</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Price" class="form-label"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-action="Index" class="btn btn-link">Cancel</a>
+        </div>
+    </form>
 </div>
 
-<h1 class="mb-3">Add a book</h1>
-<form asp-action="Create" method="post" class="card card-body" style="max-width:36rem">
-    <div class="mb-3">
-        <label asp-for="Title" class="form-label"></label>
-        <input asp-for="Title" class="form-control" />
-        <span asp-validation-for="Title" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label asp-for="Category" class="form-label"></label>
-        <select asp-for="Category" class="form-select">
-            <option value="">(none)</option>
-            <option>Classic</option>
-            <option>Fiction</option>
-            <option>Poetry</option>
-            <option>Reference</option>
-            <option>Textbook</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label asp-for="Price" class="form-label"></label>
-        <input asp-for="Price" class="form-control" />
-        <span asp-validation-for="Price" class="text-danger"></span>
-    </div>
-    <div>
-        <button type="submit" class="btn btn-primary">Save</button>
-        <a asp-action="Index" class="btn btn-link">Cancel</a>
-    </div>
-</form>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

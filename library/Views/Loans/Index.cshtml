@@ -2,45 +2,246 @@
 @{
     ViewData["Title"] = "Loans";
 }
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <div>
-        <h1 class="mb-0">Loans</h1>
-        <p class="text-muted mb-0">@Model.Count loans, newest first</p>
-    </div>
-    <a asp-action="Borrow" class="btn btn-primary">Borrow a book</a>
-</div>
-<table class="table table-striped table-hover align-middle">
-    <thead class="table-dark">
-        <tr>
-            <th>Member</th>
-            <th>Book</th>
-            <th>Loaned</th>
-            <th>Due</th>
-            <th>Status</th>
-            <th style="width:7rem"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var loan in Model)
-        {
-            <tr>
-                <td>@loan.MemberName</td>
-                <td>@loan.BookTitle</td>
-                <td>@(loan.LoanedOn.ToString("yyyy-MM-dd"))</td>
-                <td>@(loan.LoanedOn.AddDays(loan.DaysAllowed).ToString("yyyy-MM-dd"))</td>
-                <td>
-                    <span class="badge @(loan.Status == "Overdue" ? "text-bg-danger" : loan.Status == "Out" ?
-                          "text-bg-warning" : "text-bg-secondary")">@loan.Status</span>
-                </td>
-                <td class="text-end">
-                    @if (loan.ReturnedOn == null)
-                    {
-                        <form asp-action="Return" asp-route-id="@loan.LoanId" method="post">
-                            <button type="submit" class="btn btn-sm btn-outline-success">Return</button>
-                        </form>
-                    }
-                </td>
-            </tr>
+
+<style>
+    /* Stitch / Experiment 626 Tropical Ocean Background */
+    body {
+        background: radial-gradient(circle at top left, #e0f2fe 0%, #f0f9ff 55%, #fff1f2 100%);
+        min-height: 100vh;
+    }
+
+    .loans-wrapper {
+        max-width: 1100px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+        /* Lilo Hibiscus Coral Back Pill */
+        .loans-wrapper > .btn-light {
+            background-color: #ffe4e6 !important;
+            border: 1.5px solid #fda4af !important;
+            color: #be123c !important;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            transition: all 0.2s ease;
         }
-    </tbody>
-</table>
+
+            .loans-wrapper > .btn-light:hover {
+                background-color: #fb7185 !important;
+                border-color: #fb7185 !important;
+                color: #ffffff !important;
+                transform: translateY(-1px);
+            }
+
+    /* Experiment 626 Cosmic Blue Header Banner */
+    .loans-header {
+        background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #0284c7 100%);
+        color: #ffffff;
+        padding: 1.85rem 2rem;
+        border-radius: 22px 22px 0 0;
+        border: 2px solid #7dd3fc;
+        border-bottom: none;
+        box-shadow: 0 12px 30px rgba(2, 132, 199, 0.18);
+        position: relative;
+        overflow: hidden;
+    }
+
+        /* Subtle Tropical Hibiscus Watermark */
+        .loans-header::after {
+            content: "🌺";
+            position: absolute;
+            bottom: -14px;
+            right: 22px;
+            font-size: 4.5rem;
+            opacity: 0.16;
+            transform: rotate(-15deg);
+            pointer-events: none;
+        }
+
+        .loans-header h1 {
+            font-weight: 800;
+            font-size: 1.75rem;
+            letter-spacing: -0.02em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+            .loans-header h1::before {
+                content: "🐾";
+                font-size: 1.45rem;
+            }
+
+        .loans-header .text-muted {
+            color: #bae6fd !important;
+            font-size: 0.92rem;
+            font-weight: 500;
+        }
+
+        /* Sunset Gold & Coral Borrow Button */
+        .loans-header .btn-primary {
+            background: linear-gradient(90deg, #e11d48 0%, #fb7185 50%, #f59e0b 100%);
+            color: #ffffff;
+            border: none;
+            padding: 0.65rem 1.45rem;
+            font-weight: 700;
+            border-radius: 50rem;
+            box-shadow: 0 6px 18px rgba(225, 29, 72, 0.35);
+            transition: all 0.2s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+            .loans-header .btn-primary:hover {
+                opacity: 0.94;
+                transform: translateY(-2px);
+                box-shadow: 0 8px 22px rgba(225, 29, 72, 0.45);
+            }
+
+    /* Main Stitch Island Table Card */
+    .loans-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        border-radius: 0 0 22px 22px;
+        box-shadow: 0 16px 38px rgba(30, 58, 138, 0.1);
+        border: 2px solid #7dd3fc;
+        border-top: none;
+        overflow: hidden;
+    }
+
+        .loans-card .table {
+            margin-bottom: 0;
+        }
+
+            .loans-card .table thead.table-dark th {
+                background-color: #f0f9ff;
+                color: #1e40af;
+                font-size: 0.78rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+                border-bottom: 2px solid #bae6fd;
+                border-top: none;
+                padding: 1rem 1.5rem;
+            }
+
+            .loans-card .table tbody td {
+                padding: 1.1rem 1.5rem;
+                color: #1e293b;
+                border-bottom: 1px solid #e0f2fe;
+                font-size: 0.95rem;
+            }
+
+        .loans-card .table-striped > tbody > tr:nth-of-type(odd) > * {
+            background-color: #f8fafc;
+            box-shadow: none;
+        }
+
+        .loans-card .table-hover > tbody > tr:hover > * {
+            background-color: #e0f2fe;
+            box-shadow: none;
+            transition: background-color 0.15s ease;
+        }
+
+        .loans-card .table tbody td:first-child {
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+
+        /* Soft Stitch & Tropical Pill Badges */
+        .loans-card .badge {
+            padding: 0.45em 0.9em;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border-radius: 50rem;
+            letter-spacing: 0.02em;
+        }
+
+        .loans-card .text-bg-danger {
+            background-color: #ffe4e6 !important;
+            color: #e11d48 !important;
+            border: 1.5px solid #fda4af;
+        }
+
+        .loans-card .text-bg-warning {
+            background-color: #fef3c7 !important;
+            color: #d97706 !important;
+            border: 1.5px solid #fde68a;
+        }
+
+        .loans-card .text-bg-secondary {
+            background-color: #e0f2fe !important;
+            color: #0369a1 !important;
+            border: 1.5px solid #bae6fd;
+        }
+
+        /* Hawaiian Ocean Teal Return Button */
+        .loans-card .btn-outline-success {
+            border-radius: 50rem;
+            font-weight: 700;
+            padding: 0.38rem 1.05rem;
+            border: 2px solid #0d9488;
+            color: #0f766e;
+            background-color: #f0fdfa;
+            transition: all 0.15s ease;
+        }
+
+            .loans-card .btn-outline-success:hover {
+                background: linear-gradient(90deg, #0d9488 0%, #2dd4bf 100%);
+                border-color: transparent;
+                color: #ffffff;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+            }
+</style>
+
+<div class="loans-wrapper">
+    <a asp-controller="Home" asp-action="Index" class="btn btn-sm btn-light border rounded-pill px-3 d-inline-flex align-items-center gap-1">
+        <span></span> Back to Home
+    </a>
+
+    <div class="d-flex justify-content-between align-items-center mb-0 loans-header">
+        <div>
+            <h1 class="mb-0">Loans</h1>
+            <p class="text-muted mb-0">@Model.Count loans, newest first</p>
+        </div>
+        <a asp-action="Borrow" class="btn btn-primary">Borrow a book</a>
+    </div>
+    <div class="loans-card table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Member</th>
+                    <th>Book</th>
+                    <th>Loaned</th>
+                    <th>Due</th>
+                    <th>Status</th>
+                    <th style="width:7rem"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var loan in Model)
+                {
+                    <tr>
+                        <td>@loan.MemberName</td>
+                        <td>@loan.BookTitle</td>
+                        <td>@(loan.LoanedOn.ToString("yyyy-MM-dd"))</td>
+                        <td>@(loan.LoanedOn.AddDays(loan.DaysAllowed).ToString("yyyy-MM-dd"))</td>
+                        <td>
+                            <span class="badge @(loan.Status == "Overdue" ? "text-bg-danger" : loan.Status == "Out" ?
+                                                                                          "text-bg-warning" : "text-bg-secondary")">@loan.Status</span>
+                        </td>
+                        <td class="text-end">
+                            @if (loan.ReturnedOn == null)
+                            {
+                                <form asp-action="Return" asp-route-id="@loan.LoanId" method="post">
+                                    <button type="submit" class="btn btn-sm btn-outline-success">Return</button>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

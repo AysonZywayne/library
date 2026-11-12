@@ -3,6 +3,176 @@
     ViewData["Title"] = "Members Directory";
 }
 
+<style>
+    body {
+        background: radial-gradient(circle at top left, #e0f2fe 0%, #f0f9ff 55%, #fff1f2 100%);
+        min-height: 100vh;
+    }
+
+    /* Lilo Hibiscus Coral Back Pill */
+    .btn-light {
+        background-color: #ffe4e6 !important;
+        border: 1.5px solid #fda4af !important;
+        color: #be123c !important;
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+
+        .btn-light:hover {
+            background-color: #fb7185 !important;
+            border-color: #fb7185 !important;
+            color: #ffffff !important;
+            transform: translateY(-1px);
+        }
+
+    /* Experiment 626 Cosmic Blue Header Banner */
+    .container > .border-bottom {
+        background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #0284c7 100%);
+        color: #ffffff;
+        padding: 1.85rem 2rem !important;
+        margin-bottom: 0 !important;
+        border-radius: 22px 22px 0 0;
+        border: 2px solid #7dd3fc !important;
+        border-bottom: none !important;
+        box-shadow: 0 12px 30px rgba(2, 132, 199, 0.18);
+        position: relative;
+        overflow: hidden;
+    }
+
+        .container > .border-bottom::after {
+            content: "🌺";
+            position: absolute;
+            bottom: -14px;
+            right: 22px;
+            font-size: 4.5rem;
+            opacity: 0.16;
+            transform: rotate(-15deg);
+            pointer-events: none;
+        }
+
+        .container > .border-bottom h1 {
+            color: #ffffff !important;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+            .container > .border-bottom h1::before {
+                content: "🐾";
+                font-size: 1.65rem;
+            }
+
+        .container > .border-bottom .text-muted {
+            color: #bae6fd !important;
+            font-weight: 500;
+        }
+
+        .container > .border-bottom .badge.bg-success {
+            background-color: #ffffff !important;
+            color: #0f766e !important;
+            font-weight: 800;
+        }
+
+        /* Hawaiian Ocean Teal Add Member Button */
+        .container > .border-bottom .btn-success {
+            background: linear-gradient(90deg, #0d9488 0%, #2dd4bf 100%);
+            color: #ffffff;
+            border: 1.5px solid #99f6e4;
+            box-shadow: 0 6px 18px rgba(13, 148, 136, 0.35);
+            transition: all 0.2s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+            .container > .border-bottom .btn-success:hover {
+                background: linear-gradient(90deg, #0f766e 0%, #14b8a6 100%);
+                transform: translateY(-2px);
+            }
+
+    /* Main Stitch Island Table Card */
+    .container > .card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        border-radius: 0 0 22px 22px !important;
+        border: 2px solid #7dd3fc !important;
+        border-top: none !important;
+        box-shadow: 0 16px 38px rgba(30, 58, 138, 0.1) !important;
+    }
+
+        .container > .card thead th {
+            background-color: #f0f9ff !important;
+            color: #1e40af !important;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid #bae6fd !important;
+        }
+
+        .container > .card tbody tr {
+            border-bottom: 1px solid #e0f2fe;
+        }
+
+        .container > .card .table-hover tbody tr:hover {
+            background-color: #e0f2fe !important;
+        }
+
+        .container > .card tbody td .fw-bold.text-dark {
+            color: #1e3a8a !important;
+        }
+
+    .bg-premium {
+        background-color: #7c3aed !important;
+    }
+
+    .transition-all {
+        transition: all 0.2s ease-in-out;
+    }
+
+    /* Stitch Action Buttons */
+    .container > .card .btn-outline-primary {
+        border: 1.5px solid #2dd4bf;
+        color: #0f766e;
+        background-color: #f0fdfa;
+        border-radius: 50rem;
+        padding: 0.25rem 0.85rem;
+        font-weight: 600;
+    }
+
+        .container > .card .btn-outline-primary:hover {
+            background-color: #0d9488;
+            border-color: #0d9488;
+            color: #ffffff;
+        }
+
+    .container > .card .btn-outline-secondary {
+        border: 1.5px solid #38bdf8;
+        color: #0369a1;
+        background-color: #f0f9ff;
+        font-weight: 600;
+    }
+
+        .container > .card .btn-outline-secondary:hover {
+            background-color: #0284c7;
+            border-color: #0284c7;
+            color: #ffffff;
+        }
+
+    .container > .card .btn-outline-danger {
+        border: 1.5px solid #fda4af;
+        color: #e11d48;
+        background-color: #fff1f2;
+        font-weight: 600;
+    }
+
+        .container > .card .btn-outline-danger:hover {
+            background-color: #e11d48;
+            border-color: #e11d48;
+            color: #ffffff;
+        }
+</style>
+
+
 <div class="d-flex gap-2 mb-4">
     <a asp-controller="Home" asp-action="Index" class="btn btn-sm btn-light border rounded-pill px-3 d-inline-flex align-items-center gap-1">
         <span></span> Back to Home
@@ -99,18 +269,3 @@
         </div>
     </div>
 </div>
-
-<!-- Extra Style Enhancements for Custom Color Tiers -->
-<style>
-    .bg-premium {
-        background-color: #6f42c1;
-    }
-
-    .transition-all {
-        transition: all 0.2s ease-in-out;
-    }
-
-    .table-hover tbody tr:hover {
-        background-color: rgba(248, 249, 250, 0.85);
-    }
-</style>

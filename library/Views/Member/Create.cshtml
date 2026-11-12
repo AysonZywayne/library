@@ -3,7 +3,171 @@
     ViewData["Title"] = "Add a member";
 }
 
+<style>
+    body {
+        background: radial-gradient(circle at top left, #e0f2fe 0%, #f0f9ff 55%, #fff1f2 100%);
+        min-height: 100vh;
+    }
+
+    /* Center & Frame the Form Area */
+    main, .container {
+        max-width: 42rem;
+        margin: 0 auto;
+    }
+
+    /* Heading with Stitch Paw Print */
+    h1 {
+        color: #1e3a8a;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+        h1::before {
+            content: "🐾";
+            font-size: 1.65rem;
+        }
+
+    /* Top Navigation Pills */
+    .btn-outline-secondary {
+        border: 1.5px solid #38bdf8 !important;
+        color: #0369a1 !important;
+        background-color: #ffffff !important;
+        font-weight: 600;
+        margin-bottom: 1.25rem;
+        margin-right: 0.35rem;
+        transition: all 0.2s ease;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #0284c7 !important;
+            border-color: #0284c7 !important;
+            color: #ffffff !important;
+            transform: translateY(-1px);
+        }
+
+    .btn-light {
+        background-color: #ffe4e6 !important;
+        border: 1.5px solid #fda4af !important;
+        color: #be123c !important;
+        font-weight: 600;
+        margin-bottom: 1.25rem;
+        transition: all 0.2s ease;
+    }
+
+        .btn-light:hover {
+            background-color: #fb7185 !important;
+            border-color: #fb7185 !important;
+            color: #ffffff !important;
+            transform: translateY(-1px);
+        }
+
+    /* Main Stitch Island Form Card */
+    form.card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        border: 2px solid #7dd3fc;
+        border-top: 6px solid #0d9488;
+        border-radius: 22px;
+        padding: 1.85rem;
+        box-shadow: 0 14px 32px rgba(30, 58, 138, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+        form.card::after {
+            content: "🌺";
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            font-size: 1.75rem;
+            opacity: 0.8;
+            transform: rotate(12deg);
+            pointer-events: none;
+        }
+
+    /* Labels & Inputs */
+    .form-label {
+        color: #1e40af;
+        font-weight: 700;
+        font-size: 0.88rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .form-control,
+    .form-select {
+        border: 2px solid #bae6fd;
+        border-radius: 14px;
+        padding: 0.65rem 1rem;
+        background-color: #f8fafc;
+        color: #0f172a;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+
+        .form-control:focus,
+        .form-select:focus {
+            background-color: #ffffff;
+            border-color: #0d9488;
+            box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.25);
+        }
+
+    /* Validation Text */
+    .text-danger {
+        color: #e11d48 !important;
+        font-weight: 600;
+        font-size: 0.85rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    /* Hawaiian Ocean Teal Save Button (Matches Members Theme) */
+    .btn-primary {
+        background: linear-gradient(90deg, #0d9488 0%, #2dd4bf 100%) !important;
+        border: none !important;
+        border-radius: 50rem !important;
+        padding: 0.6rem 1.85rem !important;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        box-shadow: 0 6px 16px rgba(13, 148, 136, 0.32);
+        transition: all 0.2s ease;
+    }
+
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #0f766e 0%, #14b8a6 100%) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(13, 148, 136, 0.42);
+        }
+
+    /* Lilo Hibiscus Coral Cancel Link */
+    .btn-link {
+        color: #e11d48 !important;
+        font-weight: 600;
+        text-decoration: none !important;
+        padding: 0.6rem 1.1rem;
+        border-radius: 50rem;
+        transition: background-color 0.2s ease;
+    }
+
+        .btn-link:hover {
+            background-color: #ffe4e6;
+            color: #be123c !important;
+        }
+</style>
+
+
 <h1 class="mb-3">Add a member</h1>
+<a asp-action="Index" class="btn btn-sm btn-outline-secondary rounded-pill px-3 d-inline-flex align-items-center gap-1">
+    <span>&larr;</span> Back to List
+</a>
+<a asp-controller="Home" asp-action="Index" class="btn btn-sm btn-light border rounded-pill px-3 d-inline-flex align-items-center gap-1">
+    <span></span> Back to Home
+</a>
+
 <form asp-action="Create" method="post" class="card card-body" style="max-width:36rem">
 
     <!-- Full Name Field -->
