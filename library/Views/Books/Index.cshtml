@@ -3,15 +3,178 @@
     ViewData["Title"] = "Books Catalogue";
 }
 
-<div class="d-flex gap-2 mb-4">
-    <a asp-controller="Home" asp-action="Index" class="btn btn-sm btn-light border rounded-pill px-3 d-inline-flex align-items-center gap-1">
-        <span></span> Back to Home
-    </a>
-</div>
+<style>
+    /* Stitch / Experiment 626 Tropical Ocean Background */
+    body {
+        background: radial-gradient(circle at top left, #e0f2fe 0%, #f0f9ff 55%, #fff1f2 100%);
+        min-height: 100vh;
+    }
+
+    /* Lilo Hibiscus Coral Back Pill */
+    .stitch-back-bar .btn-light {
+        background-color: #ffe4e6 !important;
+        border: 1.5px solid #fda4af !important;
+        color: #be123c !important;
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+
+        .stitch-back-bar .btn-light:hover {
+            background-color: #fb7185 !important;
+            border-color: #fb7185 !important;
+            color: #ffffff !important;
+            transform: translateY(-1px);
+        }
+
+    /* Experiment 626 Cosmic Blue Header Banner */
+    .stitch-books-header {
+        background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #0284c7 100%);
+        color: #ffffff;
+        padding: 1.85rem 2rem;
+        border-radius: 22px 22px 0 0;
+        border: 2px solid #7dd3fc;
+        border-bottom: none !important;
+        box-shadow: 0 12px 30px rgba(2, 132, 199, 0.18);
+        position: relative;
+        overflow: hidden;
+    }
+
+        .stitch-books-header::after {
+            content: "🌺";
+            position: absolute;
+            bottom: -14px;
+            right: 22px;
+            font-size: 4.5rem;
+            opacity: 0.16;
+            transform: rotate(-15deg);
+            pointer-events: none;
+        }
+
+        .stitch-books-header h1 {
+            color: #ffffff !important;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+            .stitch-books-header h1::before {
+                content: "🐾";
+                font-size: 1.65rem;
+            }
+
+        .stitch-books-header .text-muted {
+            color: #bae6fd !important;
+            font-weight: 500;
+        }
+
+        .stitch-books-header .badge.bg-primary {
+            background-color: #ffffff !important;
+            color: #1e3a8a !important;
+            font-weight: 800;
+        }
+
+        /* Add a Book Gradient Pill Button */
+        .stitch-books-header .btn-primary {
+            background: linear-gradient(90deg, #0ea5e9 0%, #38bdf8 100%);
+            color: #ffffff;
+            border: 1.5px solid #bae6fd;
+            box-shadow: 0 6px 18px rgba(14, 165, 233, 0.35);
+            transition: all 0.2s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+            .stitch-books-header .btn-primary:hover {
+                background: linear-gradient(90deg, #0284c7 0%, #0ea5e9 100%);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 22px rgba(2, 132, 199, 0.45);
+            }
+
+    /* Main Stitch Island Table Card */
+    .stitch-books-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        border-radius: 0 0 22px 22px !important;
+        border: 2px solid #7dd3fc !important;
+        border-top: none !important;
+        box-shadow: 0 16px 38px rgba(30, 58, 138, 0.1) !important;
+    }
+
+        .stitch-books-card thead {
+            background-color: #f0f9ff !important;
+            border-bottom: 2px solid #bae6fd !important;
+        }
+
+            .stitch-books-card thead th {
+                background-color: #f0f9ff !important;
+                color: #1e40af !important;
+                font-weight: 800;
+                letter-spacing: 0.05em;
+            }
+
+        .stitch-books-card tbody tr {
+            border-bottom: 1px solid #e0f2fe;
+            transition: background-color 0.15s ease;
+        }
+
+        .stitch-books-card .table-hover tbody tr:hover {
+            background-color: #e0f2fe !important;
+        }
+
+        .stitch-books-card tbody td .fw-bold.text-dark {
+            color: #1e3a8a !important;
+        }
+
+    /* Custom Category Badge Enhancements */
+    .bg-purple {
+        background-color: #7c3aed !important;
+    }
+
+    .transition-all {
+        transition: all 0.2s ease-in-out;
+    }
+
+    /* Stitch Action Buttons (Edit & Delete) */
+    .stitch-books-card .btn-outline-secondary {
+        border: 1.5px solid #38bdf8;
+        color: #0369a1;
+        background-color: #f0f9ff;
+        font-weight: 600;
+    }
+
+        .stitch-books-card .btn-outline-secondary:hover {
+            background-color: #0284c7;
+            border-color: #0284c7;
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+    .stitch-books-card .btn-outline-danger {
+        border: 1.5px solid #fda4af;
+        color: #e11d48;
+        background-color: #fff1f2;
+        font-weight: 600;
+    }
+
+        .stitch-books-card .btn-outline-danger:hover {
+            background-color: #e11d48;
+            border-color: #e11d48;
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+</style>
 
 <div class="container py-4">
+    <div class="d-flex gap-2 mb-4 stitch-back-bar">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-sm btn-light border rounded-pill px-3 d-inline-flex align-items-center gap-1">
+            <span></span> Back to Home
+        </a>
+    </div>
+
     <!-- Header Summary Strip -->
-    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center border-bottom pb-3 mb-4">
+    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center border-bottom pb-3 mb-0 stitch-books-header">
         <div>
             <h1 class="display-6 fw-bold text-dark mb-1">Books Catalogue</h1>
             <p class="text-muted mb-0">
@@ -26,7 +189,7 @@
     </div>
 
     <!-- Modern Styled Data Card Table -->
-    <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+    <div class="card shadow-sm border-0 rounded-4 overflow-hidden stitch-books-card">
         <div class="table-responsive">
             <table class="table table-hover align-middle mb-0">
                 <thead class="bg-light border-bottom text-secondary font-monospace small uppercase">
@@ -95,18 +258,3 @@
         </div>
     </div>
 </div>
-
-<!-- Extra Style Enhancements for Custom Color Tiers -->
-<style>
-    .bg-purple {
-        background-color: #6f42c1;
-    }
-
-    .transition-all {
-        transition: all 0.2s ease-in-out;
-    }
-
-    .table-hover tbody tr:hover {
-        background-color: rgba(248, 249, 250, 0.85);
-    }
-</style>
